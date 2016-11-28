@@ -32,7 +32,7 @@ class Google extends App {
         }
 
         $url = 'https://www.google.com/trends/fetchComponent?hl=es&q=nivea,+nivea%20men,&geo=ES&date=now+7-d&cmpt=q&tz=Etc/GMT-1&content=1&cid=TOP_QUERIES_'.$obj->brand.'_0'; 
-
+        
         $curl = new Curl\Curl();
         $curl->get($url);
         if ($curl->error) {

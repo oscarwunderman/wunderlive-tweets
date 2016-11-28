@@ -46,7 +46,6 @@ class Brandwatch extends App {
                 //$start_time = date('H:i:s',strtotime(date('H:i:s')));
                 //$startDate = $start_date .'T'. $start_time.'.000Z';           
                 $BrandWatchId = BRANDWATCH_QUERYIDNIVEAGENERAL;
-
                 break;
             case 'nivea_tw':
                 // cloud cepsa españa fb
@@ -55,7 +54,6 @@ class Brandwatch extends App {
                 //$start_time = date('H:i:s',strtotime(date('H:i:s')));
                // $startDate = $start_date .'T'. $start_time.'.000Z';        
                 $BrandWatchId = BRANDWATCH_QUERYIDNIVEATW;
-                
                 break;
             case 'nivea_fb':
                 // cloud repsol tw
@@ -64,7 +62,6 @@ class Brandwatch extends App {
                 //$start_time = '00:00:00';
                 //$startDate = $start_date .'T'. $start_time.'.000Z'; 
                 $BrandWatchId = BRANDWATCH_QUERYIDNIVEAFB;
-
                 break;
             case 'nivea_men':
                 // cloud bp
@@ -73,7 +70,6 @@ class Brandwatch extends App {
                 //$start_time = '00:00:00';
                 //$startDate = $start_date .'T'. $start_time.'.000Z'; 
                 $BrandWatchId = BRANDWATCH_QUERYIDNIVEAMENGENERAL;
-
                 break;
             case 'nivea_men_tw':
                 // cloud galp
@@ -82,7 +78,6 @@ class Brandwatch extends App {
                 //$start_time = '00:00:00';
                 //$startDate = $start_date .'T'. $start_time.'.000Z'; 
                 $BrandWatchId = BRANDWATCH_QUERYIDNIVEAMENTWITTER;
-
                 break;
 			case 'nivea_men_fb':
                 // cloud galp
@@ -91,9 +86,7 @@ class Brandwatch extends App {
                 //$start_time = '00:00:00';
                 //$startDate = $start_date .'T'. $start_time.'.000Z'; 
                 $BrandWatchId = BRANDWATCH_QUERYIDNIVEAMENFACEBOOK;
-
-                break;
-            
+                break;   
             default:
                 //# code...
                 break;
