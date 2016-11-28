@@ -11,12 +11,12 @@ define('TW_ACCESS_TOKEN', '2922535587-16mfC1EUSjKLzSAGjA1FyEETAqEV8dMm5NCdO5M');
 define('TW_ACCESS_TOKEN_SECRET', 'JunWMci1i2tD6pnNGqkh1VDdCSddkxvlxIn5e2OUyieFC');
 
 ### TWITTER SHIT marpesiaTrabajo
-/*
+
 define('TW_CONSUMER_KEY', 'OvEpuCKx6B9IQoVQ6j4dWPJs2');
 define('TW_CONSUMER_SECRET', 'Bgt4Gjdgr3mhUr6zmdYeuT7ayOIyiX8lfsM5HQB9xVOVB2cshB');
 define('TW_ACCESS_TOKEN', '3055911993-o0llyK8AiDZRDs14MLnGKOd1fkpY977UQ7WW147');
 define('TW_ACCESS_TOKEN_SECRET', 'kGEla26pMRrRhPgR3KXvZ08gfuxeDjNNWGr75rFo8oAfT');
-*/
+
 
 define("BRANDWATCH_USERNAME", "eugenia.diaz@wunderman.com");
 define("BRANDWATCH_PASSWORD", "Wunderman_2016");
