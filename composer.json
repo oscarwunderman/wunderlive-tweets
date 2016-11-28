@@ -1,0 +1,11 @@
+{
+	"name":"wunderlive-tweets",
+	"require":{
+        "php":"~5.6",
+		"curl/curl":"1.2.1",
+        "abraham/twitteroauth":"0.6.2"
+	},
+    "require-dev":{
+        "heroku/heroku-buildpack-php": "*"
+    }
+}
