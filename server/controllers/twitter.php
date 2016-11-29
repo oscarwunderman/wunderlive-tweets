@@ -35,6 +35,7 @@ class Twitter extends App {
     }
 
     public function updateTweets(){
+        die("Entra");
         setlocale(LC_TIME,"ES").'<br>';
         date_default_timezone_set('Europe/Madrid');
 
