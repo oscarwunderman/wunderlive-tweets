@@ -35,11 +35,13 @@ class Twitter extends App {
     }
 
     public function updateTweets(){
-        die("Entra");
         setlocale(LC_TIME,"ES").'<br>';
         date_default_timezone_set('Europe/Madrid');
 
         $this->connection = new TwitterOAuth(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
+
+        print_r($this->connection);
+        die();
 
         for ($i=0; $i < count($this->categories_data); $i++) { 
         //$i = 4;
