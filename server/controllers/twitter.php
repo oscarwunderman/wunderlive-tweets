@@ -56,18 +56,18 @@ class Twitter extends App {
                     )); 
 
                 if(empty($statuses)){
-                    die('Tweet Error: Unknow tweet'.'<br>');
-                    //echo 'Tweet Error: Unknow tweet'.'<br>';
+                    echo 'Tweet Error: Unknow tweet'.'<br>';
                     continue;   
                 } else if(!empty($statuses->errors)) {
                     echo 'Tweet Brandwatch Error: Twitter Error'.'<br>'; 
                     echo 'account: '. $this->categories_data[$i]['accounts'][$j].'<br>';               
                     echo 'Twitter '. strtolower($statuses->errors[0]->message).'<br>';
-                    die();
                     continue;               
                 }
                 $k=0;
                 foreach ($statuses as $tweet) {
+                    echo "<br>".$k."<br>";
+                    print_r($tweet);
                     $_SESSION["tweet"][$i]['category'] = $this->categories_data[$i]['category'];
                     $_SESSION["tweet"][$i][$this->categories_data[$i]['accounts'][$j]][$k]['tw_id'] = $tweet->id;
                     $_SESSION["tweet"][$i][$this->categories_data[$i]['accounts'][$j]][$k]['text'] = trim($tweet->text);
