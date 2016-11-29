@@ -98,6 +98,8 @@ class Twitter extends App {
                         }
                     }
                     $k++;
+                    if($k > 9)
+                        continue;
                 }        
             }
         }
