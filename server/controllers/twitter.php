@@ -40,9 +40,6 @@ class Twitter extends App {
 
         $this->connection = new TwitterOAuth(TW_CONSUMER_KEY, TW_CONSUMER_SECRET, TW_ACCESS_TOKEN, TW_ACCESS_TOKEN_SECRET);
 
-        print_r($this->connection);
-        die();
-
         for ($i=0; $i < count($this->categories_data); $i++) { 
         //$i = 4;
             for ($j=0; $j < count($this->categories_data[$i]['accounts']); $j++) { 
@@ -55,7 +52,8 @@ class Twitter extends App {
                     "exclude_replies"   =>  true,
                     "include_rts"       =>  false
                     )); 
-
+                print_r($statuses);
+                die();
                 if(empty($statuses)){
                     echo 'Tweet Error: Unknow tweet'.'<br>';
                     continue;   
