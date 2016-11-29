@@ -56,12 +56,14 @@ class Twitter extends App {
                     )); 
 
                 if(empty($statuses)){
-                    echo 'Tweet Error: Unknow tweet'.'<br>';
+                    die('Tweet Error: Unknow tweet'.'<br>');
+                    //echo 'Tweet Error: Unknow tweet'.'<br>';
                     continue;   
                 } else if(!empty($statuses->errors)) {
                     echo 'Tweet Brandwatch Error: Twitter Error'.'<br>'; 
                     echo 'account: '. $this->categories_data[$i]['accounts'][$j].'<br>';               
                     echo 'Twitter '. strtolower($statuses->errors[0]->message).'<br>';
+                    die();
                     continue;               
                 }
                 $k=0;
