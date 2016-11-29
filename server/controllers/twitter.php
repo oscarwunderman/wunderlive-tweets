@@ -101,6 +101,9 @@ class Twitter extends App {
             }
         }
 
+        print_r($_SESSION["tweet"]);
+        die();
+
         if(empty($_SESSION["tweet"])) return false;
 
         $limits = $this->getTrends();
