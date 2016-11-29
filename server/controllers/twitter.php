@@ -16,6 +16,8 @@ class Twitter extends App {
     }
 
     public function saveData($data) {
+        print_r($data);
+        die();
         $fichero = "../tweets_history.php";
         $tweets_history = file_get_contents($fichero);
         $tweets_history = serialize($data);
@@ -52,8 +54,7 @@ class Twitter extends App {
                     "exclude_replies"   =>  true,
                     "include_rts"       =>  false
                     )); 
-                print_r($statuses);
-                die();
+
                 if(empty($statuses)){
                     echo 'Tweet Error: Unknow tweet'.'<br>';
                     continue;   
