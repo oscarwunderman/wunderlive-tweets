@@ -16,8 +16,6 @@ class Twitter extends App {
     }
 
     public function saveData($data) {
-        print_r($data);
-        die();
         $fichero = "../tweets_history.php";
         $tweets_history = file_get_contents($fichero);
         $tweets_history = serialize($data);
@@ -28,7 +26,6 @@ class Twitter extends App {
         $fichero = "../tweets_history.php";
         $tweets_history = file_get_contents($fichero);
         $tweets_history = unserialize($tweets_history);
-
         if($cat !== null){
             return $tweets_history[$cat];
         } else {
@@ -37,7 +34,6 @@ class Twitter extends App {
     }
 
     public function updateTweets(){
-        set_time_limit(1200);
         setlocale(LC_TIME,"ES").'<br>';
         date_default_timezone_set('Europe/Madrid');
 
@@ -103,9 +99,6 @@ class Twitter extends App {
                 }        
             }
         }
-
-        print_r($_SESSION["tweet"]);
-        die();
 
         if(empty($_SESSION["tweet"])) return false;
 
@@ -219,7 +212,7 @@ class Twitter extends App {
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         $http_data = curl_exec($ch);
         $info = curl_getinfo($ch);

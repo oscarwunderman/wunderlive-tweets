@@ -2,8 +2,30 @@
 include dirname(__FILE__).'/app.php';
 class Brandwatch extends App {
 
+    private function getToken()
+    {
+        echo "Entra";
+        $curl = new Curl\Curl();
+        $url_token = 'https://newapi.brandwatch.com/oauth/token';
+        $query_token = array(
+            'username'  => BRANDWATCH_USERNAME,
+            'password'  => urlencode(BRANDWATCH_PASSWORD),
+            'grant_type'=> 'api-password',
+            'client_id' => 'brandwatch-api-client');
+        $response = $curl->post($url_token, $query_token);   
+              
+        $response = json_decode($response, true);
+
+        if (empty($response['access_token'])) {
+            return null;
+        }
+
+        $token = $response['access_token'];
+
+        return $token;
+    }
+
     public function getCloud(){
-		
         $name = file_get_contents("php://input");
         if(!isset($name)) return false;
 		$obj = json_decode($name);
@@ -93,15 +115,15 @@ class Brandwatch extends App {
         }
 
         $url = 'https://newapi.brandwatch.com/projects/'. BRANDWATCH_PROJECTID .'/data/volume/topics/queries'; 
+        $token = $this->getToken();
+
         $params = array(
             'queryId'       =>  $BrandWatchId,
             'startDate'     =>  $start_date,
             'endDate'       =>  $endDate,
-            'access_token'  =>  BRANDWATCH_TOKEN
+            'access_token'  =>  $token
         );
 
-        $curl = new Curl\Curl();
-        $curl->get($url,$params);
         //pr($curl);die;
         if ($curl->error) {
             if($curl->error == 'invalid_token'){ //TODO -> revisar
@@ -126,7 +148,7 @@ class Brandwatch extends App {
             'queryId'       =>  $BrandWatchId,
             'startDate'     =>  $start_date,
             'endDate'       =>  $endDate,
-            'access_token'  =>  BRANDWATCH_TOKEN,
+            'access_token'  =>  $token,
             'pageSize'      =>  '1000',
             'orderDirection'=>  'desc'
         );
@@ -148,20 +170,22 @@ class Brandwatch extends App {
             } else {
                 echo 'error '. $curl->error_code;
             }           
-        }      
+        }
+
         $response_object_mentions = json_decode($curl->response); 
+
 		$data = array();
 		if(isset($response_object->topics)){
 			foreach ($response_object->topics as $key => $value) {     
 				$data[$key]['text'] = $value->label;
 				$data[$key]['weight'] = $value->volume;
 				foreach ($response_object_mentions->results as $key_mentions => $value_mentions) {
-					if($value->label )
-					if (strpos($value_mentions->title, $value->label) !== false || strpos($value_mentions->snippet, $value->label) !== false){                
-						$data[$key]['mentions'][$key_mentions]['title'] = $value_mentions->title;
-						$data[$key]['mentions'][$key_mentions]['snippet'] = $value_mentions->snippet;
-						$data[$key]['mentions'][$key_mentions]['url'] = $value_mentions->url;
-					}
+					if( $value->label )
+    					if (strpos($value_mentions->title, $value->label) !== false || strpos($value_mentions->snippet, $value->label) !== false){                
+    						$data[$key]['mentions'][$key_mentions]['title'] = $value_mentions->title;
+    						$data[$key]['mentions'][$key_mentions]['snippet'] = $value_mentions->snippet;
+    						$data[$key]['mentions'][$key_mentions]['url'] = $value_mentions->url;
+    					}
 				}     
 			}      
 		}
@@ -170,9 +194,11 @@ class Brandwatch extends App {
 		$bw_old['brands'][$obj->brand]['name'] = $obj->brand;
 		$bw_old['brands'][$obj->brand]['selection'] = $data;
 		$bw = serialize($bw_old);
+
 		file_put_contents($fichero, $bw);
 		
         $_SESSION["cloud_".$obj->brand] = $data;
+
         return json_encode($data);          
     }
 }
